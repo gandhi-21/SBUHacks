@@ -69,10 +69,14 @@ plt.show()
 
 # LINEAR REGRESSION
 lm.fit(train_x, train_y)
-m = lm.coef_
-b = lm.intercept_
+equation = str((np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))))
+m=equation[:equation.index("+")-2]
+b=equation[equation.index("+")+2:]
+json.dump(equation, codecs.open("graph.json", 'w', encoding='utf-8'), sort_keys=True, indent=4)
+
 
 ## LINEAR REGRESSION GRAPH
+
 plt.scatter(train_x, train_y, color="black")
 lm.fit(train_x, train_y)
 plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
@@ -97,8 +101,6 @@ print (np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPr
 plt.show()
 #EQUATION
 equation = (np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1)))
-res = str(equation)
-
 
 
 # TRAINING THE MODEL
