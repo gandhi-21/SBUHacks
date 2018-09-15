@@ -5,6 +5,7 @@ import pandas as pd
 import scipy
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.cross_validation import train_test_split
 
 # import urllib
 #
@@ -65,34 +66,49 @@ completeDF = completeDF.assign(GoogleTrendsScore=trendsDF[0])
 tempDF = completeDF
 # est = GradientBoostingRegressor()
 
-train_x = [tempDF["ClosingPrice"][:-252]]
-test_x = [tempDF["ClosingPrice"][-252:]]
-train_y = [tempDF["GoogleTrendsScore"][:-252]]
-test_y = [tempDF["GoogleTrendsScore"][-252:]]
+x_train, x_test, y_train, y_test = train_test_split(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"])
+#print(x_train.shape, x_test.shape)
+# x_train.reshape(-1, 1)
+# x_test.reshape(-1, 1)
+print(x_train.shape, x_test.shape)
+gbrt = GradientBoostingRegressor(n_estimators=100)
+gbrt.fit(x_train, y_train)
+y_pred = [gbrt.predict(x_test)]
 
-plt.scatter(train_x, train_y, color="black")
-plt.ylabel("StockPrice")
-plt.xlabel("Google Trend Score")
-plt.show()
+print(y_pred)
 
-params = {'n_estimators': 500, 'learning_rate': 0.1, 'max_depth': 4, 'random_state': 0, 'loss': 'ls'}
-gbt = GradientBoostingRegressor(params).fit(train_x, train_y)
-mse = mean_squared_error(test_y, GradientBoostingRegressor.staged_predict(test_x))
-print(mse)
 
-test_score = np.zeros((params['n_estimators']), dtype=np.float64)
+# train_x = [tempDF["ClosingPrice"][:-252]]
+# test_x = [tempDF["ClosingPrice"][-252:]]
+# train_y = [tempDF["GoogleTrendsScore"][:-252]]
+# test_y = [tempDF["GoogleTrendsScore"][-252:]]
 
-for i, y_pred in enumerate(GradientBoostingRegressor.staged_predict(test_x)):
-    test_score[i] = gbt.loss_(test_y, y_pred)
-plt.figure(figsize=(12,6))
-plt.subplot(1, 2, 1)
-plt.title('Deviance')
-plt.plot(np.arange(params['n_estimators']) + 1, gbt.train_score_, 'b-', label='Training Set Deviance')
-plt.plot(np.arange(params['n_estimators']) + 1, test_score, 'r-', label='Test Set Deviance')
-plt.legend(loc='upper right')
-plt.xlabel('Boosting Iterations')
-plt.ylabel('Deviance')
-plt.show()
+# plt.scatter(train_x, train_y, color="black")
+# plt.ylabel("StockPrice")
+# plt.xlabel("Google Trend Score")
+# plt.show()
+
+# params = {'n_estimators': 500, 'learning_rate': 0.1, 'max_depth': 4, 'min_samples_split': 2, 'loss': 'ls'}
+# # gbt = GradientBoostingRegressor(params).fit(train_x, train_y)
+# mse = mean_squared_error(test_y, GradientBoostingRegressor.staged_predict(test_x))
+# print(mse)
+
+# test_score = np.zeros((params['n_estimators']), dtype=np.float64)
+#
+# price = GradientBoostingRegressor.predict((test_y,), (test_y, 1));
+# print(price)
+
+# for i, y_pred in enumerate(GradientBoostingRegressor.staged_predict(test_x)):
+#     test_score[i] = gbt.loss_(test_y, y_pred)
+# plt.figure(figsize=(12,6))
+# plt.subplot(1, 2, 1)
+# plt.title('Deviance')
+# plt.plot(np.arange(params['n_estimators']) + 1, gbt.train_score_, 'b-', label='Training Set Deviance')
+# plt.plot(np.arange(params['n_estimators']) + 1, test_score, 'r-', label='Test Set Deviance')
+# plt.legend(loc='upper right')
+# plt.xlabel('Boosting Iterations')
+# plt.ylabel('Deviance')
+# plt.show()
 
 # X, y = 
 # X_train, X_test = X[:200], X[200:]
