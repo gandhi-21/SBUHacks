@@ -32,7 +32,7 @@ googleTrends.interestOverTime(toSearch, (error, result) => {
 
         // console.log(trendData)
         // console.log(timeLineData)
-        fs.writeFile('Trends.json', trendData, (err) => {
+        fs.writeFile('Trends.txt', trendData, (err) => {
             if(err) throw err;
 
             console.log('Write Successful');
