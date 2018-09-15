@@ -73,7 +73,7 @@ test_y = [tempDF["GoogleTrendsScore"][-52:]]
 # Plot data
 ## Original Graph
 plt.scatter(train_x, train_y, color="black")
-plt.ylabel("Stock Price")
+plt.ylabel("Closing Stock Price")
 plt.xlabel("Google Trend Score")
 plt.show()
 
@@ -87,7 +87,7 @@ print(m, b)
 plt.scatter(train_x, train_y, color="black")
 lm.fit(train_x, train_y)
 plt.plot(train_x, lm.predict(train_x))
-plt.ylabel("Stock Price")
+plt.ylabel("Closing Stock Price")
 plt.xlabel("Google Trend Score")
 plt.show()
 # plt.scatter()
