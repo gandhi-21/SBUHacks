@@ -25,9 +25,11 @@ cp = list(reversed(closingprices))
 pytrends = TrendReq(hl='en-US', tz=360)
 kw_list = ["AMD"]
 pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
-returnedTrend=pytrends.interest_over_time()
-retTr = returnedTrend.iloc[::-1]
-ratings = retTr["AMD"].tolist()
+scores = []
+with open("trends.txt") as f:
+    data = f.readlines()
+    scores = str(data).split(",")
+ratings = scores
 
 # print("----------------------------INITIAL DATA------------------------------")
 # print(cp)
@@ -40,7 +42,7 @@ CLOSINGPRICES = np.array(cp)
 TRENDSCORES = np.array(ratings)
 DatesDF = pd.DataFrame(data=DATES.T)
 pricesDF = pd.DataFrame(data=CLOSINGPRICES.T)
-trendsDF = pd.DataFrame(data=TRENDSCORES.T)
+trendsDF = pd.DataFrame(data=TRENDSCORES)
 
 completeDF = pd.DataFrame()
 completeDF = completeDF.assign(Date=DATES[0])
@@ -75,13 +77,13 @@ plt.ylabel("Stock Price")
 plt.xlabel("Google Trend Score")
 plt.show()
 
-## MACHINE LEARNING
+## LINEAR REGRESSION
 lm.fit(train_x, train_y)
 m = lm.coef_
 b = lm.intercept_
 print(m, b)
 
-## MACHINE LEARNING GRAPH
+## LINEAR REGRESSION GRAPH
 plt.scatter(train_x, train_y, color="black")
 lm.fit(train_x, train_y)
 plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))

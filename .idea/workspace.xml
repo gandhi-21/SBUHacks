@@ -14,18 +14,32 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/SBUHacks$RandForest.coverage" NAME="RandForest Coverage Results" MODIFIED="1537002410190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SBUHacks$RandForest.coverage" NAME="RandForest Coverage Results" MODIFIED="1537007516705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="RandForest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RandForest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+            <state relative-caret-position="461">
+              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Trends.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trends.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="TrendAPI.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TrendAPI.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -46,6 +60,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/TrendAPI.js" />
         <option value="$PROJECT_DIR$/RandForest.py" />
       </list>
     </option>
@@ -60,7 +75,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="857" />
+    <option name="x" value="858" />
     <option name="y" value="22" />
     <option name="width" value="823" />
     <option name="height" value="1028" />
@@ -288,11 +303,25 @@
       <option name="project" value="LOCAL" />
       <updated>1537000314085</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="started linear regression model">
+      <created>1537003103214</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1537003103214</updated>
+    </task>
+    <task id="LOCAL-00007" summary="plotting somewhat works">
+      <created>1537006300520</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1537006300520</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="857" y="22" width="823" height="1028" extended-state="0" />
+    <frame x="858" y="22" width="823" height="1028" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -300,7 +329,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5006402" side_tool="true" weight="0.32975295" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4993598" visible="true" weight="0.28249195" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32975295" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32975295" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32975295" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14084508" />
@@ -308,7 +337,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.3290653" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.85915494" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39957035" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -331,11 +360,20 @@
     <MESSAGE value="Got data to load" />
     <MESSAGE value="added metrics for closing time" />
     <MESSAGE value="Data is cleaned and functional (THERE IS AN ISSUE WITH GOOGLE TRENDS API, ONLY RETRIEVES DATA FOR PAST 261 DAYS)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Data is cleaned and functional (THERE IS AN ISSUE WITH GOOGLE TRENDS API, ONLY RETRIEVES DATA FOR PAST 261 DAYS)" />
+    <MESSAGE value="started linear regression model" />
+    <MESSAGE value="plotting somewhat works" />
+    <option name="LAST_COMMIT_MESSAGE" value="plotting somewhat works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RandForest.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="12" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -373,13 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="324" selection-start-line="324" selection-end-line="324" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/pytrends/request.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
@@ -394,10 +425,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trends.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="129" selection-end-column="5487" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrendAPI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trends.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/RandForest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+        <state relative-caret-position="461">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
