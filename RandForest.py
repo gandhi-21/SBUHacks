@@ -22,22 +22,26 @@ for i in data:
 
 cp = list(reversed(closingprices))
 
-pytrends = TrendReq(hl='en-US', tz=360)
-kw_list = ["AMD"]
-pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
-returnedTrend=pytrends.interest_over_time()
-retTr = returnedTrend.iloc[::-1]
-ratings = retTr["AMD"].tolist()
+scores = []
+with open("trends.txt") as f:
+    data = f.readlines()
+    scores = str(data).split(",")
+    scores[0] = scores[0][2:]
+    scores[-1] = scores[-1][:scores[-1].index("']")]
+    for score in scores:
+        int(score)
+
+
 
 # print("----------------------------INITIAL DATA------------------------------")
 # print(cp)
 # print(retTr)
 # print("------------------------GOOGLE TRENDS API ARRAY-----------------------")
 # print(ratings)
-print(len(ratings))
+print(len(scores))
 DATES = np.array(dates)
 CLOSINGPRICES = np.array(cp)
-TRENDSCORES = np.array(ratings)
+TRENDSCORES = np.array(scores)
 DatesDF = pd.DataFrame(data=DATES.T)
 pricesDF = pd.DataFrame(data=CLOSINGPRICES.T)
 trendsDF = pd.DataFrame(data=TRENDSCORES.T)
