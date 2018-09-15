@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3490ea79-2573-4ed2-b2c4-d796a773bb43" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/SBUHacks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SBUHacks.iml" afterDir="false" />
-    </list>
+    <list default="true" id="3490ea79-2573-4ed2-b2c4-d796a773bb43" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -1,6 +1,6 @@
 // API for Google trend Data
 const googleTrends = require('google-trends-api');
-
+const fs = require('fs');
 // First Argument is an Object with the Parameters to search for and second Argument is the callback
 
 var startDate = new Date('2013-09-15');
@@ -21,7 +21,7 @@ googleTrends.interestOverTime(toSearch, (error, result) => {
         // // console.log(result);
         let data = JSON.parse(result)
 
-        let timeLineData = data.default.timelineData
+        let timeLineData = data.default.timelineData;
 
         let trendData = []
         timeLineData.forEach((element) => {
@@ -30,8 +30,13 @@ googleTrends.interestOverTime(toSearch, (error, result) => {
             }
         })
 
-        console.log(trendData)
+        // console.log(trendData)
         // console.log(timeLineData)
+        fs.writeFile('Trends.json', trendData, (err) => {
+            if(err) throw err;
+
+            console.log('Write Successful');
+        });
     }
 });
 
