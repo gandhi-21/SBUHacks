@@ -23,15 +23,19 @@ with open("trends.txt") as f:
     data = f.readlines()
     scores = str(data).split(",")
     scores[0] = scores[0][2:]
-    scores[-1] = scores[-1][:scores[-1].index("']")]
+    scores[-1] = scores[-1][:2]
+    int_scores = []
+
     for score in scores:
-        int(score)
+        int_scores.append(int(score))
+
+
 
 
 print(len(scores))
 DATES = np.array(dates)
 CLOSINGPRICES = np.array(cp)
-TRENDSCORES = np.array(scores)
+TRENDSCORES = np.array(int_scores)
 DatesDF = pd.DataFrame(data=DATES.T)
 pricesDF = pd.DataFrame(data=CLOSINGPRICES.T)
 trendsDF = pd.DataFrame(data=TRENDSCORES.T)
