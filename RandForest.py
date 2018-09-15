@@ -73,7 +73,7 @@ test_y = [tempDF["GoogleTrendsScore"][-52:]]
 # Plot data
 ## Original Graph
 plt.scatter(train_x, train_y, color="black")
-plt.ylabel("Stock Price")
+plt.ylabel("Closing Stock Price")
 plt.xlabel("Google Trend Score")
 plt.show()
 
@@ -86,6 +86,8 @@ print(m, b)
 ## LINEAR REGRESSION GRAPH
 plt.scatter(train_x, train_y, color="black")
 lm.fit(train_x, train_y)
+plt.plot(train_x, lm.predict(train_x))
+plt.ylabel("Closing Stock Price")
 plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
 plt.ylabel("Stock Price")
 plt.xlabel("Google Trend Score")
