@@ -84,7 +84,7 @@ print(m, b)
 ## MACHINE LEARNING GRAPH
 plt.scatter(train_x, train_y, color="black")
 lm.fit(train_x, train_y)
-plt.plot(train_x, lm.predict(train_x))
+plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
 plt.ylabel("Stock Price")
 plt.xlabel("Google Trend Score")
 plt.show()
