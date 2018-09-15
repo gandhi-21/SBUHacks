@@ -7,9 +7,10 @@ import seaborn as sns
 import urllib
 from sklearn import datasets, metrics
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
 
 
-url = "https://api.iextrading.com/1.0/stock/AMD/chart/1y?filter=date,high,low,open,close"
+url = "https://api.iextrading.com/1.0/stock/AMD/chart/5y?filter=date,close"
 urlInfo = "https://api.iextrading.com/1.0/stock/amd/company"
 closingprices = []
 dates = []
@@ -25,9 +26,16 @@ pytrends = TrendReq(hl='en-US', tz=360)
 kw_list = ["AMD"] 
 pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
 returnedTrend=pytrends.interest_over_time()
-print(returnedTrend)
+retTr = returnedTrend.iloc[::-1]
+ratings = retTr["AMD"].tolist()
 
-# print(interestOverTime.head())
+print("----------------------------INITIAL DATA------------------------------")
+print(cp)
+print(retTr)
+print("------------------------GOOGLE TRENDS API ARRAY-----------------------")
+print(ratings)
+
+
 
 # print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))
 # print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))
