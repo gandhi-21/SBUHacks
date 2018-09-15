@@ -34,7 +34,7 @@ with open("trends.txt") as f:
 
 
 #@TODO COMMENT THIS
-print(len(scores))
+#print(len(scores))
 DATES = np.array(dates)
 CLOSINGPRICES = np.array(cp)
 TRENDSCORES = np.array(int_scores)
@@ -47,7 +47,7 @@ completeDF = pd.DataFrame()
 completeDF = completeDF.assign(Date=DATES[0])
 completeDF = completeDF.assign(ClosingPrice=CLOSINGPRICES[0])
 completeDF = completeDF.assign(GoogleTrendsScore=trendsDF[0])
-print(completeDF)
+#print(completeDF)
 
 ##### THIS IS TEMPORARY, GOOGLE TRENDS API ONLY RETRIEVES 260 RECENT QUERIES
 tempDF = completeDF.loc[0:260]
@@ -67,7 +67,7 @@ plt.show()
 lm.fit(train_x, train_y)
 m = lm.coef_
 b = lm.intercept_
-print(m, b)
+#print(m, b)
 
 ## MACHINE LEARNING GRAPH
 plt.scatter(train_x, train_y, color="black")
@@ -75,4 +75,8 @@ lm.fit(train_x, train_y)
 plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
 plt.ylabel("Stock Price")
 plt.xlabel("Google Trend Score")
+
+print (np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
+
+
 plt.show()
