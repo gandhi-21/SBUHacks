@@ -29,6 +29,11 @@ scores = []
 with open("trends.txt") as f:
     data = f.readlines()
     scores = str(data).split(",")
+    scores[0] = scores[0][2:]
+    scores[-1] = scores[-1][:scores[-1].index("']")]
+    for score in scores:
+        int(score)
+    print(scores[-1])
 ratings = scores
 
 # print("----------------------------INITIAL DATA------------------------------")
@@ -49,13 +54,13 @@ completeDF = completeDF.assign(Date=DATES[0])
 completeDF = completeDF.assign(ClosingPrice=CLOSINGPRICES[0])
 completeDF = completeDF.assign(GoogleTrendsScore=trendsDF[0])
 print(completeDF)
-##### THIS IS TEMPORARY, GOOGLE TRENDS API ONLY RETRIEVES 260 RECENT QUERIES
-tempDF = completeDF.loc[0:260]
+
+tempDF = completeDF
 lm = LinearRegression()
-train_x = [tempDF["ClosingPrice"][:-52]]
-test_x = [tempDF["ClosingPrice"][-52:]]
-train_y = [tempDF["GoogleTrendsScore"][:-52]]
-test_y = [tempDF["GoogleTrendsScore"][-52:]]
+train_x = [tempDF["ClosingPrice"][:-252]]
+test_x = [tempDF["ClosingPrice"][-252:]]
+train_y = [tempDF["GoogleTrendsScore"][:-252]]
+test_y = [tempDF["GoogleTrendsScore"][-252:]]
 # lm.fit(train_x, train_y)
 # stock_y_pred = lm.predict(train_x)
 # train_x, test_x, train_y, test_y = train_test_split(tempDF.values, tempDF.target, test_size=0.2, random_state=0)
