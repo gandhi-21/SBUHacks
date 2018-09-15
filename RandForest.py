@@ -50,18 +50,45 @@ print(completeDF)
 ##### THIS IS TEMPORARY, GOOGLE TRENDS API ONLY RETRIEVES 260 RECENT QUERIES
 tempDF = completeDF.loc[0:260]
 lm = LinearRegression()
-train_x = tempDF["ClosingPrice"][:-52]
-test_x = tempDF["ClosingPrice"][-52:]
-train_y = tempDF["GoogleTrendsScore"][:-52]
-test_y = tempDF["GoogleTrendsScore"][-52:]
+train_x = [tempDF["ClosingPrice"][:-52]]
+test_x = [tempDF["ClosingPrice"][-52:]]
+train_y = [tempDF["GoogleTrendsScore"][:-52]]
+test_y = [tempDF["GoogleTrendsScore"][-52:]]
+# lm.fit(train_x, train_y)
+# stock_y_pred = lm.predict(train_x)
+# train_x, test_x, train_y, test_y = train_test_split(tempDF.values, tempDF.target, test_size=0.2, random_state=0)
+# lm.fit(train_x, train_y)
+# lm.score(test_x, test_y)
+#
+# print(lm.coef_)
+# print(lm.intercept_)
+# y_pred = lm.predict(test_x)
+# plt.plot(test_y, y_pred, ".")
+# x = np.linspace(0, 100, 100)
+# y = x
+# plt.plot(x,y)
+# plt.show()
+# Plot data
+## Original Graph
+plt.scatter(train_x, train_y, color="black")
+plt.ylabel("Stock Price")
+plt.xlabel("Google Trend Score")
+plt.show()
 
+## MACHINE LEARNING
 lm.fit(train_x, train_y)
-stock_y_pred = lm.predict(train_x)
+m = lm.coef_
+b = lm.intercept_
+print(m, b)
 
-
-#####
-
-
+## MACHINE LEARNING GRAPH
+plt.scatter(train_x, train_y, color="black")
+lm.fit(train_x, train_y)
+plt.plot(train_x, lm.predict(train_x))
+plt.ylabel("Stock Price")
+plt.xlabel("Google Trend Score")
+plt.show()
+# plt.scatter()
 
 
 
