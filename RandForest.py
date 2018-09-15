@@ -19,7 +19,7 @@ for i in data:
 #REVERSES SO THE LATEST IS ON TOP OF LIST
 cp = list(reversed(closingprices))
 
-
+#@TODO COMMENT THIS
 scores = []
 with open("trends.txt") as f:
     data = f.readlines()
@@ -29,7 +29,7 @@ with open("trends.txt") as f:
     for score in scores:
         int(score)
 
-
+#@TODO COMMENT THIS
 print(len(scores))
 DATES = np.array(dates)
 CLOSINGPRICES = np.array(cp)
@@ -38,6 +38,7 @@ DatesDF = pd.DataFrame(data=DATES.T)
 pricesDF = pd.DataFrame(data=CLOSINGPRICES.T)
 trendsDF = pd.DataFrame(data=TRENDSCORES.T)
 
+#@TODO COMMENT THIS
 completeDF = pd.DataFrame()
 completeDF = completeDF.assign(Date=DATES[0])
 completeDF = completeDF.assign(ClosingPrice=CLOSINGPRICES[0])
