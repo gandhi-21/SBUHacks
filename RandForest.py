@@ -3,15 +3,13 @@ import pytrends
 from pytrends.request import TrendReq
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 import urllib
-from sklearn import datasets, metrics
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
 
 
-url = "https://api.iextrading.com/1.0/stock/AMD/chart/5y?filter=date,close"
-urlInfo = "https://api.iextrading.com/1.0/stock/amd/company"
+stock = "AMD"
+
+url = "https://api.iextrading.com/1.0/stock/" + stock + "/chart/5y?filter=date,close"
+urlInfo = "https://api.iextrading.com/1.0/stock/" + stock + "/company"
 closingprices = []
 dates = []
 data = pd.DataFrame(pd.read_json(url, orient="columns"))
@@ -23,11 +21,11 @@ for i in data:
 cp = list(reversed(closingprices))
 
 pytrends = TrendReq(hl='en-US', tz=360)
-kw_list = ["AMD"] 
+kw_list = [stock] 
 pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
 returnedTrend=pytrends.interest_over_time()
 retTr = returnedTrend.iloc[::-1]
-ratings = retTr["AMD"].tolist()
+ratings = retTr[stock].tolist()
 
 print("----------------------------INITIAL DATA------------------------------")
 print(cp)
