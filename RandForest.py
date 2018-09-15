@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 #GRABS DATA FROM STOCK API AND PUTS IT IN DATAFRAME
-stock = "AMD"
+stock = "AMZN"
 url = "https://api.iextrading.com/1.0/stock/"+stock+"/chart/5y?filter=date,close"
 urlInfo = "https://api.iextrading.com/1.0/stock/"+stock+"/company"
 closingprices = []
@@ -34,7 +34,7 @@ with open("trends.txt") as f:
 
 
 #@TODO COMMENT THIS
-#print(len(scores))
+print(len(scores))
 DATES = np.array(dates)
 CLOSINGPRICES = np.array(cp)
 TRENDSCORES = np.array(int_scores)
@@ -47,7 +47,7 @@ completeDF = pd.DataFrame()
 completeDF = completeDF.assign(Date=DATES[0])
 completeDF = completeDF.assign(ClosingPrice=CLOSINGPRICES[0])
 completeDF = completeDF.assign(GoogleTrendsScore=trendsDF[0])
-#print(completeDF)
+print(completeDF)
 
 ##### THIS IS TEMPORARY, GOOGLE TRENDS API ONLY RETRIEVES 260 RECENT QUERIES
 tempDF = completeDF.loc[0:260]
@@ -59,27 +59,19 @@ test_y = [tempDF["GoogleTrendsScore"][-52:]]
 
 ## Original Graph
 plt.scatter(train_x, train_y, color="black")
-plt.ylabel("Stock Price")
-plt.xlabel("Google Trend Score")
+plt.xlabel("Stock Price")
+plt.ylabel("Google Trend Score")
 plt.show()
 
 ## MACHINE LEARNING
-lm.fit(train_x, train_y)
-m = lm.coef_
-b = lm.intercept_
-#print(m, b)
+# m = lm.coef_
+# b = lm.intercept_
+# print(m, b)
 
 ## MACHINE LEARNING GRAPH
 plt.scatter(train_x, train_y, color="black")
 lm.fit(train_x, train_y)
 plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
-plt.ylabel("Stock Price")
-plt.xlabel("Google Trend Score")
-plt.savefig("PythonGraph", dpi=None, facecolor='w', edgecolor='w',
-        orientation='portrait', papertype=None, format=None,
-        transparent=False, bbox_inches=None, pad_inches=0.1,
-        frameon=None)
+plt.xlabel("Stock Price")
+plt.ylabel("Google Trend Score")
 plt.show()
-
-#EQUATION
-print (np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1)))
