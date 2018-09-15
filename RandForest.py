@@ -60,7 +60,6 @@ plt.xlabel("Google Trend Score")
 plt.show()
 
 ## MACHINE LEARNING
-lm.fit(train_x, train_y)
 m = lm.coef_
 b = lm.intercept_
 print(m, b)
