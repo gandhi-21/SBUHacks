@@ -21,10 +21,12 @@ for i in data:
 
 cp = list(reversed(closingprices))
 
-# pytrend = TrendReq(hl='en-US', tz=360, proxies = {'https': ''})
-# lw_list = ["AMD"]
-# pytrend.build_payload(lw_list, cat=0, timeframe="today 1-y", geo='', gprop='')
-# interestOverTime = pytrend.interest_over_time()
+pytrends = TrendReq(hl='en-US', tz=360)
+kw_list = ["AMD"] 
+pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
+returnedTrend=pytrends.interest_over_time()
+print(returnedTrend)
+
 # print(interestOverTime.head())
 
 # print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))
