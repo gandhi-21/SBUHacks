@@ -68,16 +68,11 @@ plt.show()
 
 
 # LINEAR REGRESSION
-m = lm.coef_
-b = lm.intercept_
-print(m, b)
-
 lm.fit(train_x, train_y)
-m = lm.coef_.tolist()
-b = lm.intercept_.tolist()
-print(m, b)
-npa = [].append(m).append(b)
-json.dump(npa, codecs.open("graph.json", 'w', encoding='utf-8'), sort_keys=True, indent=4)
+equation = str((np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))))
+m=equation[:equation.index("+")-2]
+b=equation[equation.index("+")+2:]
+json.dump(equation, codecs.open("graph.json", 'w', encoding='utf-8'), sort_keys=True, indent=4)
 
 
 ## LINEAR REGRESSION GRAPH
