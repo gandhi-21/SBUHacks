@@ -25,16 +25,9 @@ cp = list(reversed(closingprices))
 pytrends = TrendReq(hl='en-US', tz=360)
 kw_list = ["AMD"]
 pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
-scores = []
-with open("trends.txt") as f:
-    data = f.readlines()
-    scores = str(data).split(",")
-    scores[0] = scores[0][2:]
-    scores[-1] = scores[-1][:scores[-1].index("']")]
-    for score in scores:
-        int(score)
-    print(scores[-1])
-ratings = scores
+returnedTrend=pytrends.interest_over_time()
+retTr = returnedTrend.iloc[::-1]
+ratings = retTr["AMD"].tolist()
 
 # print("----------------------------INITIAL DATA------------------------------")
 # print(cp)
@@ -47,20 +40,20 @@ CLOSINGPRICES = np.array(cp)
 TRENDSCORES = np.array(ratings)
 DatesDF = pd.DataFrame(data=DATES.T)
 pricesDF = pd.DataFrame(data=CLOSINGPRICES.T)
-trendsDF = pd.DataFrame(data=TRENDSCORES)
+trendsDF = pd.DataFrame(data=TRENDSCORES.T)
 
 completeDF = pd.DataFrame()
 completeDF = completeDF.assign(Date=DATES[0])
 completeDF = completeDF.assign(ClosingPrice=CLOSINGPRICES[0])
 completeDF = completeDF.assign(GoogleTrendsScore=trendsDF[0])
 print(completeDF)
-
-tempDF = completeDF
+##### THIS IS TEMPORARY, GOOGLE TRENDS API ONLY RETRIEVES 260 RECENT QUERIES
+tempDF = completeDF.loc[0:260]
 lm = LinearRegression()
-train_x = [tempDF["ClosingPrice"][:-252]]
-test_x = [tempDF["ClosingPrice"][-252:]]
-train_y = [tempDF["GoogleTrendsScore"][:-252]]
-test_y = [tempDF["GoogleTrendsScore"][-252:]]
+train_x = [tempDF["ClosingPrice"][:-52]]
+test_x = [tempDF["ClosingPrice"][-52:]]
+train_y = [tempDF["GoogleTrendsScore"][:-52]]
+test_y = [tempDF["GoogleTrendsScore"][-52:]]
 # lm.fit(train_x, train_y)
 # stock_y_pred = lm.predict(train_x)
 # train_x, test_x, train_y, test_y = train_test_split(tempDF.values, tempDF.target, test_size=0.2, random_state=0)
@@ -78,21 +71,19 @@ test_y = [tempDF["GoogleTrendsScore"][-252:]]
 # Plot data
 ## Original Graph
 plt.scatter(train_x, train_y, color="black")
-plt.ylabel("Closing Stock Price")
+plt.ylabel("Stock Price")
 plt.xlabel("Google Trend Score")
 plt.show()
 
-## LINEAR REGRESSION
+## MACHINE LEARNING
 lm.fit(train_x, train_y)
 m = lm.coef_
 b = lm.intercept_
 print(m, b)
 
-## LINEAR REGRESSION GRAPH
+## MACHINE LEARNING GRAPH
 plt.scatter(train_x, train_y, color="black")
 lm.fit(train_x, train_y)
-plt.plot(train_x, lm.predict(train_x))
-plt.ylabel("Closing Stock Price")
 plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
 plt.ylabel("Stock Price")
 plt.xlabel("Google Trend Score")
