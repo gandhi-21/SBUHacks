@@ -75,8 +75,7 @@ lm.fit(train_x, train_y)
 plt.plot(np.unique(tempDF["ClosingPrice"]), np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1))(np.unique(tempDF["ClosingPrice"])))
 plt.ylabel("Stock Price")
 plt.xlabel("Google Trend Score")
-
-print (np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1)))
-
-
 plt.show()
+
+#EQUATION
+print (np.poly1d(np.polyfit(tempDF["ClosingPrice"], tempDF["GoogleTrendsScore"], 1)))
